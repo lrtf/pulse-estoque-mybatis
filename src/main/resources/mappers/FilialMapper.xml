@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="br.com.pulse.mapper.FilialMapper">
+
+	<select id="buscar" resultType="br.com.pulse.model.Filial">
+		select cd23_id as id, cd23_desc as descricao, cd23_endereco as endereco from
+		"treinamento-pulse".cd23_filial where cd23_id = #{filialId};
+	</select>
+
+</mapper>

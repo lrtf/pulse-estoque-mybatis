@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="br.com.pulse.mapper.ProdutoMapper">
+
+<insert id="inserir" parameterType="br.com.pulse.model.Produto" useGeneratedKeys="true" keyProperty="id" keyColumn="cd01_id">
+	insert into "treinamento-pulse".cd01_produto (cd01_desc, cd01_cod_barras, cd01_data_cadastro, cd01_ativo)
+	values(#{produto.descricao}, #{produto.codBarras}, now(), true);
+</insert>
+
+<select id="buscar" resultType="br.com.pulse.model.Produto">
+	select cd01_id as id, cd01_desc as descricao, cd01_cod_barras as codBarras, cd01_data_cadastro as dataCadastro, cd01_ativo as ativo from "treinamento-pulse".cd01_produto where cd01_id = #{produtoId}; 
+</select>
+
+</mapper>
