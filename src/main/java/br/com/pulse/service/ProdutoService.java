@@ -2,29 +2,31 @@ package br.com.pulse.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.pulse.mapper.ProdutoMapper;
 import br.com.pulse.model.Produto;
 import br.com.pulse.model.exception.ProdutoNotFoundException;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ProdutoService {
 
-	@Autowired
 	ProdutoMapper produtoMapper;
-
+	
 	public List<Produto> buscarTodos() {
 		return produtoMapper.buscarTodos();
 	}
 
 	public Produto buscar(Long produtoId) throws ProdutoNotFoundException {
 		Produto produto = produtoMapper.buscar(produtoId);
+		
 		if(produto == null) {
-			throw new ProdutoNotFoundException ("Empresa não encontrada");
+			throw new ProdutoNotFoundException ("Product not found.");
 		}
+		
 		return produto;
 	}
 

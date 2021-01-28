@@ -32,7 +32,6 @@ public class ProdutoController extends ResponseEntityExceptionHandler {
 	@Autowired
 	ProdutoService produtoService;
 	
-	
 	@GetMapping
 	public ResponseEntity<List<Produto>> buscarTodos(){
 		return new ResponseEntity<List<Produto>>(produtoService.buscarTodos(), HttpStatus.OK);

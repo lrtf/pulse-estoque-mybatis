@@ -2,14 +2,14 @@ package br.com.pulse.model.exception;
 
 public class ExceptionResponse {
 	
-	private String mensagem;
+	private String message;
 
 	public ExceptionResponse(String message) {
 		super();
-		this.mensagem = message;
+		this.message = message;
 	}
 
-	public String getMensagem() {
-		return mensagem;
+	public String getMessage() {
+		return message;
 	}
 }
