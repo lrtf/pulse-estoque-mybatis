@@ -3,13 +3,47 @@
 
 <mapper namespace="br.com.pulse.mapper.ProdutoMapper">
 
-<insert id="inserir" parameterType="br.com.pulse.model.Produto" useGeneratedKeys="true" keyProperty="id" keyColumn="cd01_id">
-	insert into "treinamento-pulse".cd01_produto (cd01_desc, cd01_cod_barras, cd01_data_cadastro, cd01_ativo)
-	values(#{produto.descricao}, #{produto.codBarras}, now(), true);
-</insert>
+	<insert id="inserir" 
+		parameterType="br.com.pulse.model.Produto"
+		useGeneratedKeys="true" 
+		keyProperty="id" 
+		keyColumn="cd01_id">
+		
+		insert into "treinamento-pulse".cd01_produto (cd01_desc, cd01_cod_barras,
+		cd01_data_cadastro, cd01_ativo)
+		values(#{produto.descricao}, #{produto.codBarras}, now(), true);
+		
+	</insert>
 
-<select id="buscar" resultType="br.com.pulse.model.Produto">
-	select cd01_id as id, cd01_desc as descricao, cd01_cod_barras as codBarras, cd01_data_cadastro as dataCadastro, cd01_ativo as ativo from "treinamento-pulse".cd01_produto where cd01_id = #{produtoId}; 
-</select>
+	<select id="buscar" 
+		resultType="br.com.pulse.model.Produto">
+		
+		select cd01_id as id, cd01_desc as descricao, cd01_cod_barras as codBarras,
+		cd01_data_cadastro as dataCadastro, cd01_ativo as ativo from
+		"treinamento-pulse".cd01_produto where cd01_id = #{produtoId} and cd01_ativo = true;
+		
+	</select>
+
+	<select id="buscarTodos" 
+		resultType="br.com.pulse.model.Produto">
+		
+		select cd01_id as id, cd01_desc as descricao, cd01_cod_barras as codBarras,
+		cd01_data_cadastro as dataCadastro, cd01_ativo as ativo from
+		"treinamento-pulse".cd01_produto;
+		
+	</select>
+
+	<update id="alterar">
+
+		update "treinamento-pulse".cd01_produto set cd01_desc =
+		#{produto.descricao}, cd01_cod_barras = #{produto.codBarras},
+		cd01_ativo = #{produto.ativo} where cd01_id = #{produtoId} ;
+
+	</update>
+	
+	
+	<delete id="deletar" parameterType="Long">
+		delete from "treinamento-pulse".cd01_produto where cd01_id = #{produtoId}
+	</delete>
 
 </mapper>
