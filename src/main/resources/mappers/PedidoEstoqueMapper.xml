@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="br.com.pulse.mapper.PedidoEstoqueMapper">
+
+<resultMap type="br.com.pulse.model.PedidoEstoque"
+		   id="pedidoEstoqueResultMap">
+
+	<result column="cd04_id" property="id" />
+	<result column="cd04_id_filial" property="filialId" />
+	<result column="cd04_data" property="data" />
+
+</resultMap>
+
+<select id="buscar" resultMap="pedidoEstoqueResultMap">
+
+	select cd04_id, cd04_id_filial,
+	cd04_data from
+	"treinamento-pulse".cd04_pedido_estoque where cd04_id = #{pedidoId}
+
+</select>
+
+</mapper>
