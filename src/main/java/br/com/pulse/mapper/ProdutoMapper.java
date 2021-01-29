@@ -21,4 +21,5 @@ public interface ProdutoMapper {
 	public void alterar(@Param("produto") Produto produto, @Param("produtoId") Long produtoId);
 	
 	public void deletar (@Param("produtoId") Long produtoId);
+
 }
