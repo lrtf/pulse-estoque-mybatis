@@ -120,6 +120,20 @@ public class ProdutoServiceTest {
 		
 	}
 	
+	@Test
+	public void deveDeletarUmProdutoPorId() {
+		ArgumentCaptor<Long> produtoIdCaptor = ArgumentCaptor.forClass(Long.class);
+		
+		Long produtoId = criaProduto().getId();
+		
+		produtoService.deletar(produtoId);
+		
+		verify(produtoMapper).deletar(produtoIdCaptor.capture());
+		
+		Assertions.assertThat(produtoId).isEqualTo(produtoIdCaptor.getValue());
+		
+	}
+	
 	public Produto criaProduto() {
 		LocalDateTime data = LocalDateTime.now();
 		return new Produto(2L, "0001", "Produto1", data, true);
