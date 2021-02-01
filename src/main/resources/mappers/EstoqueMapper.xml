@@ -3,36 +3,19 @@
 
 <mapper namespace="br.com.pulse.mapper.EstoqueMapper">
 
-	<resultMap id="filialResultMap" type="br.com.pulse.model.Filial">
-	
-		<result column="cd23_id" property="id" />
-		<result column="cd23_desc" property="descricao" />
-		<result column="cd23_endereco" property="endereco" />
-		
-	</resultMap>
-
-	<resultMap id="produtoResultMap" type="br.com.pulse.model.Produto">
-	
-		<result column="cd01_id" property="id" />
-		<result column="cd01_desc" property="descricao" />
-		<result column="cd01_cod_barras" property="codBarras" />
-		<result column="cd01_data_cadastro" property="dataCadastro"/>
-		
-	</resultMap>
-
 	<resultMap id="estoqueResultMap" type="br.com.pulse.model.Estoque">
 	
 		<result column="cd02_id" property="id" />		
 		<result column="cd02_qtd" property="quantidade" />
-		<association resultMap="filialResultMap" property="filial" />
-		<association resultMap="produtoResultMap" property="produto" />
+		<association resultMap="br.com.pulse.mapper.FilialMapper.filialResultMap" property="filial" />
+		<association resultMap="br.com.pulse.mapper.ProdutoMapper.produtoResultMap" property="produto" />
 
 	</resultMap>
 
 	<select id="buscarProdutoPorFilial"
 		resultMap="estoqueResultMap">
 		
-		select cd02_id, cd23_id, cd23_desc, cd23_endereco, cd02_qtd, cd01_id, cd01_desc, cd01_cod_barras, cd01_data_cadastro from
+		select cd02_id, cd23_id, cd23_desc, cd23_endereco, cd02_qtd, cd01_id, cd01_desc, cd01_cod_barras, cd01_data_cadastro, cd01_ativo from
 		"treinamento-pulse".cd02_estoque inner join
 		"treinamento-pulse".cd23_filial on cd23_id = cd02_id_filial inner join
 		"treinamento-pulse".cd01_produto on cd01_id = cd02_id_produto where

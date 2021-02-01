@@ -3,8 +3,16 @@
 
 <mapper namespace="br.com.pulse.mapper.FilialMapper">
 
-	<select id="buscar" resultType="br.com.pulse.model.Filial">
-		select cd23_id as id, cd23_desc as descricao, cd23_endereco as endereco from
+<resultMap id="filialResultMap" type="br.com.pulse.model.Filial">
+
+	<result column="cd23_id" property="id" />
+	<result column="cd23_desc" property="descricao" />
+	<result column="cd23_endereco" property="endereco" />
+
+</resultMap>
+
+	<select id="buscar" resultMap="filialResultMap">
+		select cd23_id, cd23_desc, cd23_endereco from
 		"treinamento-pulse".cd23_filial where cd23_id = #{filialId};
 	</select>
 
